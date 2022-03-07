@@ -15,6 +15,10 @@ final public class Divides extends Operation
 	neutral = 1;
   }
   
-  public int op(int l, int r)
-    { return (l/r); }
+  public int op(int l, int r) throws IllegalArithmeticOperation {
+      if (r == 0) {
+          throw new IllegalArithmeticOperation(); // TODO division by zero
+      }
+      return (l/r);
+    }
 }

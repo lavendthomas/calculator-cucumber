@@ -2,11 +2,15 @@ package calculator;
 
 import visitor.Visitor;
 
+import java.util.Optional;
+
 public class MyNumber implements Expression
 {
   private final int value;
 
-  public Integer getValue() { return value; }
+  public Optional<Integer> getValue() {
+      return Optional.of(value);
+  }
 
   public /*constructor*/ MyNumber(int v) {
 	  value=v;

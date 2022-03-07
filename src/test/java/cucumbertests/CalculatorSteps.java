@@ -98,7 +98,7 @@ public class CalculatorSteps {
 				case "difference": { op = new Minus(params); break; }
 				default: fail();
 			}
-			assertEquals(val, c.eval(op));
+			assertEquals(val, c.eval(op).get().intValue());
 		} catch (IllegalConstruction e) {
 			fail();
 		}
@@ -109,7 +109,7 @@ public class CalculatorSteps {
 		//During previous @When steps, extra parameters may have been added to the operation
 		//so we complete its parameter list here:
 		op.addMoreParams(params);
-		assertEquals(val, c.eval(op));
+		assertEquals(val, c.eval(op).get().intValue());
 
 	}
 

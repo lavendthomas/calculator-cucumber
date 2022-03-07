@@ -28,14 +28,14 @@ public class TestEvaluator {
     @Test
     public void testEvaluatorMyNumber() {
         assertEquals( value1,
-                      calc.eval(new MyNumber(value1)));
+                      calc.eval(new MyNumber(value1)).get().intValue());
     }
 
     @Test
     public void testEvaluatorDivides() {
         try { op = new Divides(Arrays.asList(new MyNumber(value1), new MyNumber(value2)));
           assertEquals( value1 / value2,
-                        calc.eval(op) );
+                        calc.eval(op).get().intValue() );
           }
         catch(IllegalConstruction e) {
             fail();
@@ -46,7 +46,7 @@ public class TestEvaluator {
     public void testEvaluatorPlus() {
         try { op = new Plus(Arrays.asList(new MyNumber(value1), new MyNumber(value2)));
             assertEquals( value1 + value2,
-                    calc.eval(op) );
+                    calc.eval(op).get().intValue() );
         }
         catch(IllegalConstruction e) {
             fail();
@@ -57,7 +57,7 @@ public class TestEvaluator {
     public void testEvaluatorMinus() {
         try { op = new Minus(Arrays.asList(new MyNumber(value1), new MyNumber(value2)));
             assertEquals( value1 - value2,
-                    calc.eval(op) );
+                    calc.eval(op).get().intValue() );
         }
         catch(IllegalConstruction e) {
             fail();
@@ -68,7 +68,7 @@ public class TestEvaluator {
     public void testEvaluatorTimes() {
         try { op = new Times(Arrays.asList(new MyNumber(value1), new MyNumber(value2)));
             assertEquals( value1 * value2,
-                    calc.eval(op) );
+                    calc.eval(op).get().intValue() );
         }
         catch(IllegalConstruction e) {
             fail();

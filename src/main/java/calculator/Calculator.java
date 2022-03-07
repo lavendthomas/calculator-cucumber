@@ -2,6 +2,8 @@ package calculator;
 
 import visitor.Evaluator;
 
+import java.util.Optional;
+
 public class Calculator {
 
     /*
@@ -27,7 +29,7 @@ public class Calculator {
         System.out.println();
     }
 
-    public int eval(Expression e) {
+    public Optional<Integer> eval(Expression e) {
         // create a new visitor to evaluate expressions
         Evaluator v = new Evaluator();
         // and ask the expression to accept this visitor to start the evaluation process
