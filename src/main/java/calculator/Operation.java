@@ -122,4 +122,7 @@ public abstract class Operation implements Expression
 		return result;
 	}
 
+	public String getSymbol() {
+		return symbol;
+	}
 }

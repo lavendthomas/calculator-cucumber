@@ -1,5 +1,9 @@
 package calculator;
 
+import visitor.InfixPrinter;
+import visitor.PostfixPrinter;
+import visitor.PrefixPrinter;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -44,11 +48,14 @@ public class Main {
 		c.printExpressionDetails(e);
 		c.eval(e).get();
 
+		var printer = new PostfixPrinter();
+		e.accept(printer);
+
 		List<Expression> params4 = new ArrayList<>();
 		Collections.addAll(params4, new Plus(params), new Minus(params2), new MyNumber(5));
 		e = new Divides(params4,Notation.POSTFIX);
 		c.print(e);
-		c.eval(e);
+		c.eval(e).get();
 	}
 
 	catch(IllegalConstruction exception) {
