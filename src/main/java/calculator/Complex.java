@@ -140,12 +140,56 @@ public class Complex extends Number implements Expression {
 
     @Override
     protected Number pow(Rational rat) {
-        return null;
+
+        if (rat.toReal().getValue().compareTo(BigDecimal.ZERO) == 0) {
+            return new Complex(BigDecimal.ONE, BigDecimal.ZERO);
+        }
+        if (rat.toReal().getValue().compareTo(BigDecimal.ONE) == 0) {
+            return this;
+        }
+        if (rat.toReal().getValue().compareTo(BigDecimal.ZERO) == 1) {
+            int n = rat.toReal().getValue().intValue();
+            return getComplex(n);
+        }
+        else{ // other cases are not implemented
+            return null;
+        }
     }
 
     @Override
     protected Number pow(Real r) {
-        return null;
+        if (r.getValue().compareTo(BigDecimal.ZERO) == 0) {
+            return new Complex(BigDecimal.ONE, BigDecimal.ZERO);
+        }
+        if (r.getValue().compareTo(BigDecimal.ONE) == 0) {
+            return this;
+        }
+        if (r.getValue().compareTo(BigDecimal.ZERO) == 1) {
+            int n = r.getValue().intValue();
+            return getComplex(n);
+        }
+        else{ // other cases are not implemented
+            return null;
+        }
+    }
+
+    /**
+     * @param n the power to raise the complex number to
+     * @return the complex number raised to the power n
+     */
+    private Number getComplex(int n) {
+        if ((n % 2 == 0) && (real.compareTo(BigDecimal.ZERO) == 0)) {
+            return new Complex(imaginary.pow(n).negate(), new BigDecimal(0));
+        }
+        else{
+            Complex c = new Complex(real, imaginary);
+            while (n > 1) {
+                c = new Complex((c.getReal().multiply(this.getReal())).add(c.getImaginary().multiply(this.getImaginary()).negate()), (c.getReal().multiply(this.getImaginary())).add(c.getImaginary().multiply(this.getReal())));
+                n = n - 1;
+
+            }
+            return c;
+        }
     }
 
     @Override
