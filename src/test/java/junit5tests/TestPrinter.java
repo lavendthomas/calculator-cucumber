@@ -1,6 +1,8 @@
 package junit5tests;
 
 import calculator.*;
+import calculator.operation.Minus;
+import calculator.operation.Plus;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import visitor.InfixPrinter;

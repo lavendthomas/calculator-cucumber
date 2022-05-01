@@ -3,49 +3,66 @@ package gui;
 import calculator.Calculator;
 import calculator.Expression;
 import calculator.Parser;
-import javafx.event.ActionEvent;
+import javafx.scene.control.CheckBox;
+import javafx.scene.layout.HBox;
+
+import static gui.navigation.ModeEnum.BASIC_MODE;
+import static java.lang.String.valueOf;
 
 /**
  * This controller handle the main graphical interface's actions.
  * Read the calculator panel which contains functionalities
  * Switch mode
  */
-public class BasicController extends Controller {
+public class BasicController extends ControllerWithMemory {
 
-    private Calculator calculator = new Calculator();
+    private final Calculator calculator = new Calculator();
+    private final Parser parser = new Parser(calculator);
+    public CheckBox isRational;
+    public HBox BasicMode;
 
     public void submitButton() {
-        Expression expr = Parser.parse(this.inputField.getText());
-        this.outputField.setText(calculator.eval(expr).toString());
+        if (inputField == null) return;
+        String input = inputField.getText().replace("%", "/100");
+
+        if (!valueOf(input.charAt(0)).matches("[0-9]"))
+            input = "0"+input;
+
+        Expression expr = parser.parse(input);
+        String result;
+        try {
+            if (isRational.isSelected())
+                result = calculator.eval(expr).toString();
+            else
+                result = calculator.eval(expr).toReal().toString();
+
+            this.outputField.setText(result);
+            keepComponentValue(inputField.getText(), result, BASIC_MODE.id());
+
+        } catch (Exception e) {
+            this.showAlertMessage(e.getMessage());
+        }
         this.setSubmitted(true);
     }
 
     public void plusButton() {
-        addOperation("+");
+        clearAfterSubmitted();
+        inputField.setText(inputField.getText() + "+");
     }
 
     public void minusButton() {
-        addOperation("-");
+        clearAfterSubmitted();
+        inputField.setText(inputField.getText() + "-");
     }
 
     public void timesButton() {
-        addOperation("×");
+        clearAfterSubmitted();
+        inputField.setText(inputField.getText() + "×");
     }
 
     public void dividesButton() {
-        addOperation("/");
+        clearAfterSubmitted();
+        inputField.setText(inputField.getText() + "/");
     }
 
-    private void addOperation(String operation) {
-        if (isSubmitted()) {
-            setSubmitted(false);
-            inputField.setText("");
-        }
-        inputField.setText(inputField.getText() + operation);
-    }
-
-    public void historyButton(ActionEvent actionEvent) {
-        //Todo add code to call history
-
-    }
 }

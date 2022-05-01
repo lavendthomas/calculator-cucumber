@@ -5,8 +5,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import calculator.*;
 import calculator.Number;
+import calculator.operation.Times;
 import org.junit.jupiter.api.*;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 
 public class TestRational {
@@ -108,9 +110,25 @@ public class TestRational {
 	public void testComparison() {
 		assertTrue(a.compareTo(b) > 0);
 		assertTrue(b.compareTo(a) < 0);
+		assertTrue(b.compareTo((Rational) a.negate()) > 0);
+		assertTrue(new Rational(0).compareTo(new Rational(0)) == 0);
 		assertEquals(0, a.compareTo(new Rational(num1, den1)));
 	}
 
+	@Test
+	public void testEmptyConstructor() {
+		assertEquals(new Rational(), new Rational(0, 1));
+	}
+
+	@Test
+	public void testConstructorNegate() {
+		assertEquals(new Rational(-5, 1).toReal(), new Real(-5));
+	}
+
+	@Test
+	public void testToReal() {
+		assertEquals(a.toReal(), new Real("0.25"));
+	}
 
 
 

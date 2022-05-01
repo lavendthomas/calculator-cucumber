@@ -4,7 +4,9 @@ package junit5tests;
 import static org.junit.jupiter.api.Assertions.*;
 
 import calculator.*;
-import calculator.Number;
+import calculator.operation.Divides;
+import calculator.operation.Minus;
+import calculator.operation.Plus;
 import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;

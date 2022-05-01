@@ -1,15 +1,17 @@
 package cucumbertests;
 
 import calculator.*;
-import calculator.Number;
+import calculator.operation.Divides;
+import calculator.operation.Minus;
+import calculator.operation.Plus;
+import calculator.operation.Times;
+import calculator.operation.buildinfunctions.Identity;
+import calculator.operation.buildinfunctions.Sin;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import visitor.InfixPrinter;
-import visitor.PostfixPrinter;
-import visitor.PrefixPrinter;
-import visitor.Printer;
+import visitor.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,12 +23,16 @@ public class CalculatorSteps {
 
 	private ArrayList<Expression> params;
 	private Operation op;
+	private Function fn;
+	private Expression arg;
 	private Calculator c;
 
 	@Before
     public void resetMemoryBeforeEachScenario() {
 		params = null;
 		op = null;
+		fn = null;
+		arg = null;
 	}
 
 	@Given("I initialise a calculator")
@@ -34,18 +40,33 @@ public class CalculatorSteps {
 		c = new Calculator();
 	}
 
+	@Given("a function {string}")
+	public void givenAFunction(String s) {
+		try{
+			fn = switch (s) {
+				case "identity" -> new Identity(null);
+				case "sin" -> new Sin(null);
+				default -> { fail(); throw new RuntimeException("failed"); }
+			};
+		} catch (IllegalConstruction e) {
+			fail();
+		}
+	}
+
 	@Given("an integer operation {string}")
 	public void givenAnIntegerOperation(String s) {
 		// Write code here that turns the phrase above into concrete actions
 		params = new ArrayList<>(); // create an empty set of parameters to be filled in
 		try {
-			switch (s) {
-				case "+": { op = new Plus(params); break; }
-				case "-": { op = new Minus(params); break; }
-				case "*": { op = new Times(params); break; }
-				case "/": { op = new Divides(params); break; }
-				default: { fail(); }
-			}
+			op = switch (s) {
+				case "+" -> new Plus(params);
+				case "-" -> new Minus(params);
+				case "*" -> new Times(params);
+				case "/" -> new Divides(params);
+				default -> {
+					fail(); throw new RuntimeException("failed.");
+				}
+			};
 		} catch (IllegalConstruction e) {
 			fail();
 		}
@@ -95,16 +116,21 @@ public class CalculatorSteps {
 		params.add(new Rational(val));
 	}
 
+	@When("^I provide the argument (\\d+)")
+	public void whenIProvideTheArgument(int val) {
+		arg = new Real(val);
+	}
+
 	@Then("^the (.*) is (\\d+)$")
 	public void thenTheOperationIs(String s, int val) {
 		try {
-			switch (s) {
-				case "sum": { op = new Plus(params); break; }
-				case "product": { op = new Times(params); break; }
-				case "quotient": { op = new Divides(params); break; }
-				case "difference": { op = new Minus(params); break; }
-				default: fail();
-			}
+			op = switch (s) {
+				case "sum" -> new Plus(params);
+				case "product" -> new Times(params);
+				case "quotient" -> new Divides(params);
+				case "difference" -> new Minus(params);
+				default -> { fail(); throw new RuntimeException("failed."); }
+			};
 			assertEquals(new Rational(val), c.eval(op));
 		} catch (IllegalConstruction e) {
 			fail();
@@ -125,6 +151,14 @@ public class CalculatorSteps {
 		//so we complete its parameter list here:
 		op.addMoreParams(params);
 		assertEquals(new Rational(num, denom), c.eval(op));
+	}
+
+	@Then("the function evaluates to {int}")
+	public void thenTheFunctionEvaluatesTo(int result) {
+		fn.changeExpression(arg);
+		Evaluator e = new Evaluator();
+		fn.accept(e);
+		assertEquals(new Real(result), e.getResult());
 	}
 
 }

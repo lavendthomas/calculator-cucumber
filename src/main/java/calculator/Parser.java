@@ -10,11 +10,17 @@ import visitor.SyntaxTreeVisitor;
 
 public class Parser {
 
+    Calculator calculator;
+
+    public Parser(Calculator calc) {
+        calculator = calc;
+    }
+
     /**
      * Parses the string and return a syntax tree for the expression
      * @param expression the expression to parse
      */
-    public static Expression parse(String expression) {
+    public Expression parse(String expression) {
         // TODO handle exceptions
         // Source: https://github.com/antlr/antlr4/blob/4.6/doc/listeners.md
         CharStream input = new ANTLRInputStream(expression);
@@ -24,7 +30,7 @@ public class Parser {
         CalculatorExpressionParser.ExpressionContext tree = parser.expression();
 
         // Map tree to Expression
-        SyntaxTreeVisitor treeVisitor = new SyntaxTreeVisitor();
+        SyntaxTreeVisitor treeVisitor = new SyntaxTreeVisitor(calculator);
         return treeVisitor.visit(tree);
     }
 }

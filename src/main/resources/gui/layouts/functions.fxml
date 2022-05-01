@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.layout.HBox?>
+<VBox id="mainScreen" fx:id="mainScreen" stylesheets="@../styles/functions.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.FunctionsController">
+    <MenuBar id="bar" fx:id="bar">
+        <Menu mnemonicParsing="false">
+            <graphic>
+                <MenuButton mnemonicParsing="false" prefWidth="125.0" text="Functions mode">
+                    <items>
+                        <MenuItem onAction="#showSceneBasic" text="Basic mode" />
+                        <MenuItem onAction="#showSceneConverter" text="Converter mode" />
+                        <MenuItem onAction="#showSceneScientific" text="Scientific mode" />
+                        <MenuItem onAction="#showSceneFunctions" text="Functions mode" />
+                    </items>
+                </MenuButton>
+            </graphic>
+        </Menu>
+      <Menu mnemonicParsing="false" />
+    </MenuBar>
+    <HBox fx:id="FunctionMode">
+        <Button maxHeight="38.0" maxWidth="45.0" minHeight="38.0" minWidth="45.0" mnemonicParsing="false" onAction="#saveHistory">
+            <graphic>
+                <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@logos/save.png" />
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button maxHeight="38.0" maxWidth="45.0" minHeight="38.0" minWidth="45.0" mnemonicParsing="false" onAction="#loadHistory">
+            <graphic>
+                <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@logos/load.png" />
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button maxHeight="38.0" maxWidth="45.0" minHeight="38.0" minWidth="45.0" mnemonicParsing="false" onAction="#printHistory">
+            <graphic>
+                <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@logos/print.png" />
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button maxHeight="38.0" maxWidth="45.0" minHeight="38.0" minWidth="45.0" mnemonicParsing="false" onAction="#configHistory">
+            <graphic>
+                <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@logos/config.png" />
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button maxHeight="38.0" maxWidth="38.0" minHeight="38.0" minWidth="38.0" mnemonicParsing="false" onAction="#historyLast">
+            <graphic>
+                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@logos/historyFirst.png" />
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button maxHeight="38.0" maxWidth="38.0" minHeight="38.0" minWidth="38.0" mnemonicParsing="false" onAction="#historyLeft">
+            <graphic>
+                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@logos/historyLeft.png" />
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button maxHeight="38.0" maxWidth="38.0" minHeight="38.0" minWidth="38.0" mnemonicParsing="false" onAction="#historyRight">
+            <graphic>
+                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@logos/historyRight.png" />
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button maxHeight="38.0" maxWidth="38.0" minHeight="38.0" minWidth="38.0" mnemonicParsing="false" onAction="#historyFirst">
+            <graphic>
+                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@logos/historyLast.png" />
+                </ImageView>
+            </graphic>
+        </Button>
+    </HBox>
+    <VBox>
+        <VBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+        </VBox.margin>
+      <Pane fx:id="pane" prefHeight="400.0" prefWidth="400.0">
+         <VBox.margin>
+            <Insets bottom="5.0" top="5.0" />
+         </VBox.margin>
+      </Pane>
+        <GridPane>
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="75.0" minWidth="75.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="75.0" minWidth="75.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="300.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints vgrow="SOMETIMES" />
+            </rowConstraints>
+            <VBox.margin>
+                <Insets top="5.0" />
+            </VBox.margin>
+            <TextField id="calcField" fx:id="inputField" prefHeight="75.0" GridPane.columnIndex="2" />
+            <Button mnemonicParsing="false" onAction="#up" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="1">
+                <graphic>
+                    <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@logos/up.png" />
+                    </ImageView>
+                </graphic>
+            </Button>
+         <Button mnemonicParsing="false" onAction="#cancel" prefHeight="75.0" prefWidth="75.0">
+            <graphic>
+                <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@logos/cancel.png" />
+                </ImageView>
+            </graphic>
+         </Button>
+        </GridPane>
+        <GridPane maxWidth="400.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="75.0" minWidth="75.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="75.0" minWidth="75.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="75.0" minWidth="75.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="75.0" minWidth="75.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="75.0" minWidth="75.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="75.0" minWidth="75.0" />
+            </columnConstraints>
+            <rowConstraints>
+            <RowConstraints vgrow="SOMETIMES" />
+            </rowConstraints>
+         <Button mnemonicParsing="false" onAction="#left" prefHeight="75.0" prefWidth="75.0">
+            <graphic>
+                <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@logos/left.png" />
+                </ImageView>
+            </graphic>
+         </Button>
+         <Button mnemonicParsing="false" onAction="#down" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="1">
+            <graphic>
+                <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@logos/down.png" />
+                </ImageView>
+            </graphic>
+         </Button>
+         <Button mnemonicParsing="false" onAction="#right" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="2">
+            <graphic>
+                <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@logos/right.png" />
+                </ImageView>
+            </graphic>
+         </Button>
+         <Button mnemonicParsing="false" onAction="#zoomOut" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="4">
+            <graphic>
+                <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@logos/zoomout.png" />
+                </ImageView>
+            </graphic>
+         </Button>
+            <Button mnemonicParsing="false" onAction="#zoomIn" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="3">
+                <graphic>
+                    <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@logos/zoomin.png" />
+                    </ImageView>
+                </graphic>
+            </Button>
+         <Button mnemonicParsing="false" onAction="#submitButton" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="5">
+            <graphic>
+                <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@logos/submit.png" />
+                </ImageView>
+            </graphic>
+         </Button>
+          <VBox.margin>
+              <Insets />
+          </VBox.margin>
+        </GridPane>
+    </VBox>
+</VBox>

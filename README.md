@@ -1,12 +1,10 @@
 Code quality: ![Maven Build](https://github.com/AlixDeclerck/calculator-cucumber/actions/workflows/maven.yml/badge.svg)
-[![BCH compliance](https://bettercodehub.com/edge/badge/AlixDeclerck/calculator-cucumber?branch=project-configuration-with-gui-for-calculator)](https://bettercodehub.com/)
+[![BCH compliance](https://bettercodehub.com/edge/badge/AlixDeclerck/calculator-cucumber?branch=7-feature-calculator-with-memory-functionality)](https://bettercodehub.com/)
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/6856a0f94d25446ca346cbc15a701d43)](https://www.codacy.com/gh/AlixDeclerck/calculator-cucumber/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=AlixDeclerck/calculator-cucumber&amp;utm_campaign=Badge_Grade)
 
 Test coverage: ![Coverage](.github/badges/jacoco.svg)
 ![Branches](.github/badges/branches.svg)
-
-# Calculating arithmetic expressions
 
 ## About
 
@@ -28,11 +26,12 @@ The code is used (for educational purposes at the University of Mons, Belgium) t
 
 ### Installation and testing instructions
 
-*  Upon first use of the code in this repository, you will need to run "mvn install" to ensure that all required project dependencies (e.g. for Java, JUnit, Cucumber, and Maven) will be downloaded and installed locally.
-*  Assuming you have a sufficiently recent version of Maven installed (the required versions are specified as properties in the POM file), you can compile the source code using "mvn compile"
-*  Once the code is compiled, you can execute the main class of the Java code using "mvn exec:java"
-*  The tests and BDD scenarios are executable with Maven using "mvn test"
-*  Note that the tests are also executed when you do a "mvn install". It is possible to skip those tests by providing an extra parameter. For details of more advanced uses of Maven, please refer to its official documentation https://maven.apache.org/guides/.
+* Upon first use of the code in this repository, you will need to run "mvn install" to ensure that all required project dependencies (e.g. for Java, JUnit, Cucumber, and Maven) will be downloaded and installed locally.
+* Assuming you have a sufficiently recent version of Maven installed (the required versions are specified as properties in the POM file), you can compile the source code using "mvn compile"
+* Once the code is compiled, you can execute the main class of the Java code using "mvn exec:java"
+* The tests and BDD scenarios are executable with Maven using "mvn test"
+* Note that the tests are also executed when you do a "mvn install". It is possible to skip those tests by providing an extra parameter. For details of more advanced uses of Maven, please refer to its official documentation https://maven.apache.org/guides/.
+* After that using " java -jar target/calculator-cucumber-[version].jar "
 
 ### Test coverage and JavaDoc reporting
 
@@ -65,6 +64,8 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 This code is licensed as CC BY-SA 4.0 (Creative Commons Attribution-ShareAlike 4.0 International)
 https://creativecommons.org/licenses/by-sa/4.0/
+
+icons of buttons source : https://www.freepik.com
 
 ## Acknowledgments
 

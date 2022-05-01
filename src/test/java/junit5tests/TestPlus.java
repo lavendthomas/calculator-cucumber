@@ -8,6 +8,8 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 import calculator.*;
+import calculator.operation.Plus;
+import calculator.operation.Times;
 import org.junit.jupiter.api.*;
 import visitor.InfixPrinter;
 import visitor.PostfixPrinter;

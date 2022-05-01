@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuButton?>
@@ -14,122 +17,199 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox id="mainScreen" fx:id="mainScreen" maxHeight="750.0" maxWidth="450.0" minHeight="450.0" minWidth="300.0" stylesheets="@../styles/basic.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.BasicController">
-    <MenuBar id="bar" fx:id="bar" maxHeight="45.0" maxWidth="450.0" minHeight="30.0" minWidth="300.0">
+<VBox id="mainScreen" fx:id="mainScreen" stylesheets="@../styles/basic.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.BasicController">
+    <MenuBar id="bar" fx:id="bar">
         <Menu mnemonicParsing="false">
             <graphic>
-                <MenuButton maxHeight="29.0" maxWidth="189.0" minHeight="26.0" minWidth="126.0" mnemonicParsing="false" text="Basic mode">
+                <MenuButton mnemonicParsing="false" prefWidth="125.0" text="Basic mode">
                     <items>
                         <MenuItem onAction="#showSceneBasic" text="Basic mode" />
                         <MenuItem onAction="#showSceneConverter" text="Converter mode" />
+                        <MenuItem onAction="#showSceneScientific" text="Scientific mode" />
+                        <MenuItem onAction="#showSceneFunctions" text="Functions mode" />
                     </items>
                 </MenuButton>
             </graphic>
         </Menu>
     </MenuBar>
-      <HBox maxHeight="75.0" maxWidth="450.0" minHeight="50.0" minWidth="300.0">
-          <TextField id="calcField" fx:id="inputField" editable="false" maxHeight="75.0" maxWidth="375.0" minHeight="50.0" minWidth="250.0" />
-          <Button maxHeight="75.0" maxWidth="75.0" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#historyButton">
-              <graphic>
-                 <ImageView fitHeight="48.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
-                     <Image url="@logos/history.png" />
-                 </ImageView>
-              </graphic>
-          </Button>
-      </HBox>
-      <TextField id="resultField" fx:id="outputField" alignment="CENTER_RIGHT" editable="false" maxHeight="75.0" maxWidth="450.0" minHeight="50.0" minWidth="300.0" />
-    <GridPane maxHeight="75.0" maxWidth="450.0" minHeight="50.0" minWidth="300.0">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" />
-            <ColumnConstraints hgrow="SOMETIMES" />
-            <ColumnConstraints hgrow="SOMETIMES" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints vgrow="SOMETIMES" />
-        </rowConstraints>
-        <Button maxHeight="75.0" maxWidth="113.0" minHeight="50.0" minWidth="75.0" mnemonicParsing="false" onAction="#clickValueButton" text="(">
-        </Button>
-        <Button maxHeight="75.0" maxWidth="113.0" minHeight="50.0" minWidth="75.0" mnemonicParsing="false" onAction="#clickValueButton" text=")" GridPane.columnIndex="1">
-        </Button>
-        <Button maxHeight="75.0" maxWidth="226.0" minHeight="50.0" minWidth="151.0" mnemonicParsing="false" onAction="#eraseButton" GridPane.columnIndex="2">
+    <HBox fx:id="BasicMode">
+        <Button maxHeight="38.0" maxWidth="45.0" minHeight="38.0" minWidth="45.0" mnemonicParsing="false" onAction="#saveHistory">
             <graphic>
-                <ImageView fitHeight="28.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@logos/erase.png" />
+                <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@logos/save.png" />
                 </ImageView>
             </graphic>
         </Button>
-    </GridPane>
-    <GridPane maxHeight="300.0" maxWidth="450.0" minHeight="200.0" minWidth="300.0">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" />
-            <ColumnConstraints hgrow="SOMETIMES" />
-            <ColumnConstraints hgrow="SOMETIMES" />
-            <ColumnConstraints hgrow="SOMETIMES" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints vgrow="SOMETIMES" />
-            <RowConstraints vgrow="SOMETIMES" />
-            <RowConstraints vgrow="SOMETIMES" />
-            <RowConstraints vgrow="SOMETIMES" />
-        </rowConstraints>
-        <Button maxHeight="75.0" maxWidth="113.0" minHeight="50.0" minWidth="75.0" mnemonicParsing="false" onAction="#clickValueButton" text="1" GridPane.rowIndex="3" />
-        <Button maxHeight="75.0" maxWidth="113.0" minHeight="50.0" minWidth="75.0" mnemonicParsing="false" onAction="#clickValueButton" text="3" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-        <Button maxHeight="75.0" maxWidth="113.0" minHeight="50.0" minWidth="75.0" mnemonicParsing="false" onAction="#clickValueButton" text="4" GridPane.rowIndex="2" />
-        <Button maxHeight="75.0" maxWidth="113.0" minHeight="50.0" minWidth="75.0" mnemonicParsing="false" onAction="#clickValueButton" text="5" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-        <Button maxHeight="75.0" maxWidth="113.0" minHeight="50.0" minWidth="75.0" mnemonicParsing="false" onAction="#clickValueButton" text="6" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-        <Button maxHeight="75.0" maxWidth="113.0" minHeight="50.0" minWidth="75.0" mnemonicParsing="false" onAction="#clickValueButton" text="7" GridPane.rowIndex="1" />
-        <Button maxHeight="75.0" maxWidth="113.0" minHeight="50.0" minWidth="75.0" mnemonicParsing="false" onAction="#clickValueButton" text="8" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-        <Button maxHeight="75.0" maxWidth="113.0" minHeight="50.0" minWidth="75.0" mnemonicParsing="false" onAction="#clickValueButton" text="9" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-        <Button maxHeight="75.0" maxWidth="113.0" minHeight="50.0" minWidth="75.0" mnemonicParsing="false" onAction="#clickValueButton" text="2" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-        <Button maxHeight="75.0" maxWidth="113.0" minHeight="50.0" minWidth="75.0" mnemonicParsing="false" onAction="#plusButton" GridPane.columnIndex="3" GridPane.rowIndex="3">
+        <Button maxHeight="38.0" maxWidth="45.0" minHeight="38.0" minWidth="45.0" mnemonicParsing="false" onAction="#loadHistory">
             <graphic>
-                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@logos/plus.png" />
+                <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@logos/load.png" />
                 </ImageView>
             </graphic>
         </Button>
-        <Button maxHeight="75.0" maxWidth="113.0" minHeight="50.0" minWidth="75.0" mnemonicParsing="false" onAction="#minusButton" GridPane.columnIndex="3" GridPane.rowIndex="2">
+        <Button maxHeight="38.0" maxWidth="45.0" minHeight="38.0" minWidth="45.0" mnemonicParsing="false" onAction="#printHistory">
             <graphic>
-                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@logos/minus.png" />
+                <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@logos/print.png" />
                 </ImageView>
             </graphic>
         </Button>
-        <Button maxHeight="75.0" maxWidth="113.0" minHeight="50.0" minWidth="75.0" mnemonicParsing="false" onAction="#timesButton" GridPane.columnIndex="3" GridPane.rowIndex="1">
+        <Button maxHeight="38.0" maxWidth="45.0" minHeight="38.0" minWidth="45.0" mnemonicParsing="false" onAction="#configHistory">
             <graphic>
-                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@logos/times.png" />
+                <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@logos/config.png" />
                 </ImageView>
             </graphic>
         </Button>
-        <Button maxHeight="75.0" maxWidth="113.0" minHeight="50.0" minWidth="75.0" mnemonicParsing="false" onAction="#dividesButton" GridPane.columnIndex="3">
+        <Button maxHeight="38.0" maxWidth="38.0" minHeight="38.0" minWidth="38.0" mnemonicParsing="false" onAction="#historyLast">
             <graphic>
-                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@logos/divides.png" />
+                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@logos/historyFirst.png" />
                 </ImageView>
             </graphic>
         </Button>
-        <Button maxHeight="75.0" maxWidth="113.0" minHeight="50.0" minWidth="75.0" mnemonicParsing="false" onAction="#clickValueButton" text="\%" />
-        <Button maxHeight="75.0" maxWidth="113.0" minHeight="50.0" minWidth="75.0" mnemonicParsing="false" onAction="#cancelButton" text="C" GridPane.columnIndex="1" />
-        <Button maxHeight="75.0" maxWidth="113.0" minHeight="50.0" minWidth="75.0" mnemonicParsing="false" onAction="#clickValueButton" text="^" GridPane.columnIndex="2" />
-    </GridPane>
-   <GridPane minHeight="50.0" minWidth="300.0">
-      <columnConstraints>
-         <ColumnConstraints hgrow="SOMETIMES" minWidth="75.0" />
-         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-         <ColumnConstraints hgrow="SOMETIMES" minWidth="150.0" />
-      </columnConstraints>
-      <rowConstraints>
-         <RowConstraints vgrow="SOMETIMES" />
-      </rowConstraints>
-         <Button maxHeight="75.0" maxWidth="113.0" minHeight="50.0" minWidth="75.0" mnemonicParsing="false" onAction="#clickValueButton" text="," />
-         <Button maxHeight="75.0" maxWidth="113.0" minHeight="50.0" minWidth="75.0" mnemonicParsing="false" onAction="#clickValueButton" text="0" GridPane.columnIndex="1" />
-         <Button maxHeight="75.0" maxWidth="225.0" minHeight="50.0" minWidth="150.0" mnemonicParsing="false" onAction="#submitButton" GridPane.columnIndex="2">
-             <graphic>
-             <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                 <Image url="@logos/equal.png" />
-             </ImageView>
-         </graphic>
-         </Button>
-   </GridPane>
+        <Button maxHeight="38.0" maxWidth="38.0" minHeight="38.0" minWidth="38.0" mnemonicParsing="false" onAction="#historyLeft">
+            <graphic>
+                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@logos/historyLeft.png" />
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button maxHeight="38.0" maxWidth="38.0" minHeight="38.0" minWidth="38.0" mnemonicParsing="false" onAction="#historyRight">
+            <graphic>
+                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@logos/historyRight.png" />
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button maxHeight="38.0" maxWidth="38.0" minHeight="38.0" minWidth="38.0" mnemonicParsing="false" onAction="#historyFirst">
+            <graphic>
+                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@logos/historyLast.png" />
+                </ImageView>
+            </graphic>
+        </Button>
+    </HBox>
+    <VBox>
+        <VBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+        </VBox.margin>
+        <TextField id="calcField" fx:id="inputField" editable="false" maxWidth="265.0" prefHeight="50.0" prefWidth="258.0">
+            <HBox.margin>
+                <Insets right="5.0" />
+            </HBox.margin>
+        </TextField>
+        <HBox>
+            <VBox.margin>
+                <Insets top="5.0" />
+            </VBox.margin>
+            <VBox alignment="CENTER" minWidth="50.0">
+                <CheckBox id="isRational" fx:id="isRational" />
+                <Label text="Rational">
+                    <VBox.margin>
+                        <Insets left="5.0" right="5.0" />
+                    </VBox.margin>
+                </Label>
+            </VBox>
+            <TextField id="resultField" fx:id="outputField" alignment="CENTER_RIGHT" editable="false" prefHeight="50.0" prefWidth="274.0" />
+        </HBox>
+        <GridPane maxWidth="260.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="65.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="65.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="65.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="130.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints vgrow="SOMETIMES" />
+            </rowConstraints>
+            <Button mnemonicParsing="false" onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text="(">
+            </Button>
+            <Button mnemonicParsing="false" onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text=")" GridPane.columnIndex="1">
+            </Button>
+            <Button mnemonicParsing="false" onAction="#eraseButton" prefHeight="65.0" prefWidth="130.0" GridPane.columnIndex="3">
+                <graphic>
+                    <ImageView fitHeight="28.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@logos/erase.png" />
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#cancelButton" prefHeight="65.0" prefWidth="65.0" text="C" GridPane.columnIndex="2" />
+            <VBox.margin>
+                <Insets top="5.0" />
+            </VBox.margin>
+        </GridPane>
+        <GridPane maxWidth="260.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="65.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="65.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="65.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="65.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="65.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="65.0" minHeight="65.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="65.0" minHeight="65.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="65.0" minHeight="65.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <Button mnemonicParsing="false" onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text="1" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text="3" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text="4" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text="5" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text="6" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button mnemonicParsing="false" onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text="7" />
+            <Button mnemonicParsing="false" onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text="8" GridPane.columnIndex="1" />
+            <Button mnemonicParsing="false" onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text="9" GridPane.columnIndex="2" />
+            <Button mnemonicParsing="false" onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text="2" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button mnemonicParsing="false" onAction="#plusButton" prefHeight="65.0" prefWidth="65.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                <graphic>
+                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@logos/plus.png" />
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#minusButton" prefHeight="65.0" prefWidth="65.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                <graphic>
+                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@logos/minus.png" />
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#timesButton" prefHeight="65.0" prefWidth="65.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                <graphic>
+                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@logos/times.png" />
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#dividesButton" prefHeight="65.0" prefWidth="65.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                <graphic>
+                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@logos/divides.png" />
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text="\%" GridPane.columnIndex="4" />
+            <Button mnemonicParsing="false" onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text="^" GridPane.columnIndex="3" />
+        </GridPane>
+        <GridPane maxWidth="260.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="65.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="130.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="130.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="65.0" minHeight="65.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <Button mnemonicParsing="false" onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text="." />
+            <Button mnemonicParsing="false" onAction="#clickValueButton" prefHeight="65.0" prefWidth="130.0" text="0" GridPane.columnIndex="1" />
+            <Button mnemonicParsing="false" onAction="#submitButton" prefHeight="65.0" prefWidth="130.0" GridPane.columnIndex="2">
+                <graphic>
+                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@logos/equal.png" />
+                    </ImageView>
+                </graphic>
+            </Button>
+        </GridPane>
+    </VBox>
 </VBox>

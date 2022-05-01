@@ -1,11 +1,16 @@
 package calculator;
 
+import ch.obermuhlner.math.big.BigDecimalMath;
+
 import java.math.BigInteger;
+import java.math.MathContext;
+import java.math.RoundingMode;
 
 public class Rational extends Number implements Expression, Comparable<Rational> {
 
     protected BigInteger numerator;
     protected BigInteger denominator;
+    protected MathContext mc = new MathContext(10, RoundingMode.HALF_UP);
 
     /**
      * Constructs a Rational integer representing 1.
@@ -13,6 +18,20 @@ public class Rational extends Number implements Expression, Comparable<Rational>
     public /*constructor*/ Rational() {
         numerator = BigInteger.ZERO;
         denominator = BigInteger.ONE;
+    }
+
+    /**
+     * Constructs a Rational integer representing the given integer.
+     * @param n the Integ to represent
+     */
+    public /*constructor*/ Rational(Integ n) {
+        numerator = n.getValue();
+        denominator = BigInteger.ONE;
+    }
+
+    @Override
+    public Real toReal() {
+        return new Real(this);
     }
 
     /**
@@ -59,46 +78,104 @@ public class Rational extends Number implements Expression, Comparable<Rational>
         }
     }
 
+    /**
+     * Returns the value of the numerator.
+     * @return the numerator
+     */
+    /*package*/ BigInteger getNumerator() {
+        return numerator;
+    }
+
+    /**
+     * Returns the value of the denominator.
+     * @return denominator
+     */
+    /*package*/ BigInteger getDenominator() {
+        return denominator;
+    }
+
     @Override
     public Number negate() {
         return new Rational(numerator.negate(), denominator);
     }
 
     @Override
-    public Number add(Number val) {
-        if (val instanceof Rational rat) {
-            return new Rational(numerator.multiply(rat.denominator).add(rat.numerator.multiply(denominator)),
-                    denominator.multiply(rat.denominator));
-        }
-        return null;
+    protected Number add(Integ i) {
+        return i.add(this);
+    }
+
+
+    @Override
+    protected Number add(Rational rat) {
+        return new Rational(numerator.multiply(rat.denominator).add(rat.numerator.multiply(denominator)),
+                denominator.multiply(rat.denominator));
     }
 
     @Override
-    public Number subtract(Number val) {
-        if (val instanceof Rational rat) {
-            return add(rat.negate());
-        }
-        return null;
+    protected Number add(Real r) {
+        return r.add(this);
     }
 
     @Override
-    public Number multiply(Number val) {
-        if (val instanceof Rational rat) {
-            return new Rational(numerator.multiply(rat.numerator),
-                    denominator.multiply(rat.denominator));
-        }
-        return null;
+    protected Number add(Complex c) {
+        return c.add(this);
     }
 
     @Override
-    public Number divide(Number val) {
-        if (val instanceof Rational rat) {
-            if (rat.equals(new Rational(0))) {
-                throw new ArithmeticException(); // TODO do it better
-            }
-            return multiply(new Rational(rat.denominator, rat.numerator));
+    protected Number multiply(Integ i) {
+        return i.multiply(this);
+    }
+
+
+    @Override
+    protected Number multiply(Rational rat) {
+        return new Rational(numerator.multiply(rat.numerator),
+                denominator.multiply(rat.denominator));
+    }
+
+    @Override
+    protected Number multiply(Real r) {
+        return r.multiply(this);
+    }
+
+    @Override
+    protected Number multiply(Complex c) {
+        return c.multiply(this);
+    }
+
+    @Override
+    protected Number divide(Integ i) {
+        return this.divide(new Rational(i));
+    }
+
+    @Override
+    protected Number divide(Rational rat) {
+        if (rat.equals(new Rational(0))) {
+            throw new ArithmeticException(); // TODO do it better
         }
-        return null;
+        return multiply(new Rational(rat.denominator, rat.numerator));
+    }
+
+    @Override
+    protected Number divide(Real r) {
+        Real us = new Real(this);
+        return us.divide(r);
+    }
+
+    @Override
+    protected Number divide(Complex c) {
+        Complex us = new Complex(this.toReal().getValue());
+        return us.divide(c);
+    }
+
+    @Override
+    protected Number pow(Rational rat) {
+        return new Real(BigDecimalMath.pow(toReal().getValue(), rat.toReal().getValue(), MathContext.DECIMAL128)); //TODO Implement while staying in Rationals
+    }
+
+    @Override
+    protected Number pow(Real r) {
+        return new Real(BigDecimalMath.pow(toReal().getValue(), r.getValue(), MathContext.DECIMAL128));
     }
 
     @Override

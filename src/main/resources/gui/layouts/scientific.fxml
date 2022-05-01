@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox id="mainScreen" fx:id="mainScreen" stylesheets="@../styles/scientific.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ScientificController">
+   <MenuBar id="bar" fx:id="bar">
+      <Menu mnemonicParsing="false">
+         <graphic>
+            <MenuButton mnemonicParsing="false" prefWidth="125.0" text="Scientific mode">
+               <items>
+                  <MenuItem onAction="#showSceneBasic" text="Basic mode" />
+                  <MenuItem onAction="#showSceneConverter" text="Converter mode" />
+                  <MenuItem onAction="#showSceneScientific" text="Scientific mode" />
+                  <MenuItem onAction="#showSceneFunctions" text="Functions mode" />
+               </items>
+            </MenuButton>
+         </graphic>
+      </Menu>
+   </MenuBar>
+   <HBox fx:id="ScientificMode">
+      <Button maxHeight="38.0" maxWidth="45.0" minHeight="38.0" minWidth="45.0" mnemonicParsing="false" onAction="#saveHistory">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <Image url="@logos/save.png" />
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button maxHeight="38.0" maxWidth="45.0" minHeight="38.0" minWidth="45.0" mnemonicParsing="false" onAction="#loadHistory">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <Image url="@logos/load.png" />
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button maxHeight="38.0" maxWidth="45.0" minHeight="38.0" minWidth="45.0" mnemonicParsing="false" onAction="#printHistory">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <Image url="@logos/print.png" />
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button maxHeight="38.0" maxWidth="45.0" minHeight="38.0" minWidth="45.0" mnemonicParsing="false" onAction="#configHistory">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <Image url="@logos/config.png" />
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button maxHeight="38.0" maxWidth="38.0" minHeight="38.0" minWidth="38.0" mnemonicParsing="false" onAction="#historyLast">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <Image url="@logos/historyFirst.png" />
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button maxHeight="38.0" maxWidth="38.0" minHeight="38.0" minWidth="38.0" mnemonicParsing="false" onAction="#historyLeft">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <Image url="@logos/historyLeft.png" />
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button maxHeight="38.0" maxWidth="38.0" minHeight="38.0" minWidth="38.0" mnemonicParsing="false" onAction="#historyRight">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <Image url="@logos/historyRight.png" />
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button maxHeight="38.0" maxWidth="38.0" minHeight="38.0" minWidth="38.0" mnemonicParsing="false" onAction="#historyFirst">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <Image url="@logos/historyLast.png" />
+            </ImageView>
+         </graphic>
+      </Button>
+   </HBox>
+   <VBox>
+      <VBox.margin>
+         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      </VBox.margin>
+      <TextField id="calcField" fx:id="inputField" prefHeight="50.0">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </TextField>
+      <TextField id="resultField" fx:id="outputField" alignment="CENTER_RIGHT" editable="false" prefHeight="50.0">
+         <VBox.margin>
+            <Insets bottom="5.0" top="5.0" />
+         </VBox.margin>
+      </TextField>
+      <GridPane>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="65.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="65.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="65.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="65.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="65.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="130.0" prefWidth="130.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="65.0" minHeight="65.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <Button onAction="#cancelButton" prefHeight="65.0" prefWidth="65.0" text="C" GridPane.columnIndex="4" />
+         <Button onAction="#clickFctButton" prefHeight="65.0" prefWidth="65.0" text="∛" GridPane.columnIndex="2" />
+         <Button onAction="#eraseButton" prefHeight="65.0" prefWidth="130.0" GridPane.columnIndex="5">
+            <graphic>
+               <ImageView fitHeight="28.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@logos/erase.png" />
+               </ImageView>
+            </graphic>
+         </Button>
+         <Button onAction="#clickFctButton" prefHeight="65.0" prefWidth="65.0" text="√" />
+         <Button onAction="#clickFctButton" prefHeight="65.0" prefWidth="65.0" text="√" />
+         <Button onAction="#clickSquareButton" prefHeight="65.0" prefWidth="65.0" text="x²" GridPane.columnIndex="1" />
+         <Button onAction="#clickCubicButton" prefHeight="65.0" prefWidth="65.0" text="x³" GridPane.columnIndex="3" />
+      </GridPane>
+      <GridPane>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="65.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="65.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="65.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="65.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="65.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="65.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="65.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="65.0" minHeight="65.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="65.0" minHeight="65.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="65.0" minHeight="65.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="65.0" minHeight="65.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="65.0" minHeight="65.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <Button onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text="1" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+         <Button onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text="2" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+         <Button onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text="3" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+         <Button onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text="4" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+         <Button onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text="5" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+         <Button onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text="6" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+         <Button onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text="7" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+         <Button onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text="8" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+         <Button onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text="9" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+         <Button onAction="#plusButton" prefHeight="65.0" prefWidth="65.0" GridPane.columnIndex="6" GridPane.rowIndex="4">
+            <graphic>
+               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@logos/plus.png" />
+               </ImageView>
+            </graphic>
+         </Button>
+         <Button onAction="#minusButton" prefHeight="65.0" prefWidth="65.0" GridPane.columnIndex="6" GridPane.rowIndex="3">
+            <graphic>
+               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@logos/minus.png" />
+               </ImageView>
+            </graphic>
+         </Button>
+         <Button onAction="#timesButton" prefHeight="65.0" prefWidth="65.0" GridPane.columnIndex="6" GridPane.rowIndex="2">
+            <graphic>
+               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@logos/times.png" />
+               </ImageView>
+            </graphic>
+         </Button>
+         <Button onAction="#dividesButton" prefHeight="65.0" prefWidth="65.0" GridPane.columnIndex="6" GridPane.rowIndex="1">
+            <graphic>
+               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@logos/divides.png" />
+               </ImageView>
+            </graphic>
+         </Button>
+         <Button onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text="\%" GridPane.columnIndex="6" />
+         <Button onAction="#clickFctButton" prefHeight="65.0" prefWidth="65.0" text="exp" GridPane.columnIndex="5" />
+         <Button onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text="i" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+         <Button onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text=")" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+         <Button onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text="(" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+         <Button onAction="#clickAbsButton" prefHeight="65.0" prefWidth="65.0" text="|x|" GridPane.columnIndex="4" />
+         <Button onAction="#clickInverseButton" prefHeight="65.0" prefWidth="65.0" text="1/x" GridPane.columnIndex="3" />
+         <Button onAction="#clickFctButton" prefHeight="65.0" prefWidth="65.0" text="log" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+         <Button onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text="^" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+         <Button onAction="#clickFctButton" prefHeight="65.0" prefWidth="65.0" text="asin" GridPane.columnIndex="1" />
+         <Button onAction="#clickFctButton" prefHeight="65.0" prefWidth="65.0" text="sin" />
+         <Button onAction="#clickFctButton" prefHeight="65.0" prefWidth="65.0" text="cos" GridPane.rowIndex="1" />
+         <Button onAction="#clickFctButton" prefHeight="65.0" prefWidth="65.0" text="acos" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+         <Button onAction="#clickFctButton" prefHeight="65.0" prefWidth="65.0" text="tan" GridPane.rowIndex="2" />
+         <Button onAction="#clickFctButton" prefHeight="65.0" prefWidth="65.0" text="atan" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         <Button onAction="#clickFctButton" prefHeight="65.0" prefWidth="65.0" text="sinh" GridPane.rowIndex="3" />
+         <Button onAction="#clickFctButton" prefHeight="65.0" prefWidth="65.0" text="asinh" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+         <Button onAction="#clickFctButton" prefHeight="65.0" prefWidth="65.0" text="cosh" GridPane.rowIndex="4" />
+         <Button onAction="#clickFctButton" prefHeight="65.0" prefWidth="65.0" text="acosh" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+         <Button onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text="π" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+         <Button onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text="є" GridPane.columnIndex="2" />
+         <Button onAction="#clickFctButton" prefHeight="65.0" prefWidth="65.0" text="×10^" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+      </GridPane>
+      <GridPane>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="65.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="65.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="65.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="65.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="65.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="130.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="65.0" minHeight="65.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <Button onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text="0" GridPane.columnIndex="4" />
+         <Button onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text="." GridPane.columnIndex="3" />
+         <Button onAction="#clickFctButton" prefHeight="65.0" prefWidth="65.0" text="tanh" />
+         <Button onAction="#clickFctButton" prefHeight="65.0" prefWidth="65.0" text="atanh" GridPane.columnIndex="1" />
+         <Button onAction="#clickFctButton" prefHeight="65.0" prefWidth="65.0" text="ln" GridPane.columnIndex="2" />
+         <Button onAction="#submitButton" prefHeight="65.0" prefWidth="130.0" GridPane.columnIndex="5">
+            <graphic>
+               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@logos/equal.png" />
+               </ImageView>
+            </graphic>
+         </Button>
+      </GridPane>
+      <GridPane>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="130.0" prefWidth="130.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="130.0" prefWidth="130.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="65.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="130.0" prefWidth="130.0"/>
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="65.0" minHeight="65.0" vgrow="SOMETIMES"/>
+         </rowConstraints>
+         <Button onAction="#pgcd" prefHeight="65.0" prefWidth="130.0" text="pgcd"/>
+         <Button onAction="#mod" prefHeight="65.0" prefWidth="130.0" text="mod" GridPane.columnIndex="1"/>
+      </GridPane>
+   </VBox>
+</VBox>

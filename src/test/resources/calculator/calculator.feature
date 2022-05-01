@@ -91,3 +91,12 @@ Feature: Integer Arithmetic Expressions
       | "-" | 8| 5|     3|
       | "*" | 7| 2|    14|
       | "/" | 6| 2|     3|
+
+  Scenario Outline: Executing a function
+    Given a function <fun>
+    When I provide the argument <arg>
+    Then the function evaluates to <res>
+
+    Examples:
+    | fun        | arg | res |
+    | "identity" |   1 |   1 |
