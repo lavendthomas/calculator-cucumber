@@ -66,7 +66,7 @@ public class JavaFXGUI extends Application {
 
         stage.setScene(sceneBasic);
         stage.setTitle(TITLE_MAIN);
-        stage.setResizable(false);
+        stage.setResizable(true);
         stage.show();
     }
 
