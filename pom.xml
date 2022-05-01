@@ -4,7 +4,7 @@
 
     <groupId>calculator</groupId>
     <artifactId>calculator-cucumber</artifactId>
-    <version>0.7.2</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
     <name>Calculator with Cucumber tests</name>
 
