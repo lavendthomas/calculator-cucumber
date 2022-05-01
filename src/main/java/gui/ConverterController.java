@@ -16,6 +16,7 @@ import java.util.Objects;
 import static converter.IntegerEnum.*;
 
 import static converter.Unit.*;
+import static gui.navigation.ModeEnum.BASIC_MODE;
 import static gui.navigation.ModeEnum.CONVERTER_MODE;
 
 /**
@@ -72,12 +73,15 @@ public class ConverterController extends ControllerWithMemory {
      */
     public void submitButton() {
         Expression input = parser.parse(this.inputField.getText());
+        String result;
       
         if (Objects.equals(typeConv.getValue(), "Integer")) {
             IntegerEnum from = getIntegerUnit(fromUnit.getValue());
             IntegerEnum to = getIntegerUnit(toUnit.getValue());
             try {
-                this.outputField.setText(convertInt(input.toString(), from, to));
+                result = convertInt(input.toString(), from, to);
+                this.outputField.setText(result);
+                keepComponentValue(inputField.getText(), result, CONVERTER_MODE.id());
             } catch (Exception e) {
                 this.showAlertMessage(e.getMessage());
             }
@@ -88,11 +92,14 @@ public class ConverterController extends ControllerWithMemory {
                 throw new IllegalArgumentException("Unit not found");
             }
             try {
-                this.outputField.setText(convert(input.toString(), from, to, calculator));
+                result = convert(input.toString(), from, to, calculator);
+                this.outputField.setText(result);
+                keepComponentValue(inputField.getText(), result, CONVERTER_MODE.id());
             } catch (Exception e) {
                 this.showAlertMessage(e.getMessage());
             }
         }
+
         this.setSubmitted(true);
     }
 
