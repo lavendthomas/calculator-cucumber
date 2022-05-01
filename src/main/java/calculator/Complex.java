@@ -28,6 +28,11 @@ public class Complex extends Number implements Expression {
         this.imaginary = BigDecimal.ZERO;
     }
 
+    public Complex(Integ inte){
+        this.real = inte.toReal().getValue();
+        this.imaginary = BigDecimal.ZERO;
+    }
+
     /**
      * @return the real part of the complex number
      */
@@ -60,6 +65,11 @@ public class Complex extends Number implements Expression {
     }
 
     @Override
+    protected Number add(Integ i) {
+        return new Complex(real.add(i.toReal().getValue()), imaginary);
+    }
+
+    @Override
     protected Number add(Rational rat) {
         return new Complex(real.add(rat.toReal().getValue()), imaginary);
     }
@@ -73,6 +83,11 @@ public class Complex extends Number implements Expression {
     protected Number add(Complex c) {
         Complex addi = new Complex(real.add(c.getReal()), imaginary.add(c.getImaginary()));
         return addi;
+    }
+
+    @Override
+    protected Number multiply(Integ i) {
+        return i.multiply(this);
     }
 
     @Override
@@ -96,6 +111,11 @@ public class Complex extends Number implements Expression {
         BigDecimal pi = (r1.multiply(i2)).add((i1.multiply(r2)));
 
         return new Complex(pr, pi);
+    }
+
+    @Override
+    protected Number divide(Integ i) {
+        return this.divide(i.toReal());
     }
 
     @Override

@@ -8,6 +8,7 @@ import org.antlr.v4.runtime.tree.*;
 import parser.CalculatorExpressionParser;
 import parser.CalculatorExpressionVisitor;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class SyntaxTreeVisitor implements CalculatorExpressionVisitor<Expression> {
@@ -259,7 +260,10 @@ public class SyntaxTreeVisitor implements CalculatorExpressionVisitor<Expression
                 yield switch (nb.getSymbol().getType()) {
                     case CalculatorExpressionParser.INT -> new Rational(Integer.parseInt(nb.getText()));
                     case CalculatorExpressionParser.DECIMAL -> new Real(nb.getText());
-                    case CalculatorExpressionParser.IMAGINARY -> throw new RuntimeException("Missing implementation for imaginary numbers");
+                    case CalculatorExpressionParser.IMAGINARY -> {
+                        BigDecimal imaginary = nb.getText().length() == 1 ? BigDecimal.ONE : BigDecimal.valueOf(Integer.parseInt(nb.getText().substring(0, nb.getText().length()-1)));
+                        yield new Complex(BigDecimal.ZERO, imaginary);
+                    }
                     default -> throw new InvalidSyntax("Invalid number");
                 };
             }
@@ -269,8 +273,11 @@ public class SyntaxTreeVisitor implements CalculatorExpressionVisitor<Expression
                 TerminalNodeImpl nb = (TerminalNodeImpl) ctx.getChild(1);
                 yield switch (nb.getSymbol().getType()) {
                     case CalculatorExpressionParser.INT -> new Rational(Integer.parseInt(nb.getText())).negate();
-                    case CalculatorExpressionParser.DECIMAL -> new Real(nb.getText());
-                    case CalculatorExpressionParser.IMAGINARY -> throw new RuntimeException("Missing implementation for imaginary numbers");
+                    case CalculatorExpressionParser.DECIMAL -> new Real(nb.getText()).negate();
+                    case CalculatorExpressionParser.IMAGINARY -> {
+                        BigDecimal imaginary = nb.getText().length() == 1 ? BigDecimal.ONE : BigDecimal.valueOf(Integer.parseInt(nb.getText().substring(0, nb.getText().length()-1)));
+                        yield new Complex(BigDecimal.ZERO, imaginary).negate();
+                    }
                     default -> throw new InvalidSyntax("Invalid number");
                 };
             }

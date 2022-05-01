@@ -53,8 +53,8 @@ public class Function implements Expression
 
     @Override
     final public String toString() {
-        Printer p = new InfixPrinter();
-        return toString(p);
+//        Printer p = new InfixPrinter();
+        return name; // + "(" + toString(p) + ")";
     }
 
     final public String toString(Printer p) {

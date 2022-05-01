@@ -20,6 +20,15 @@ public class Rational extends Number implements Expression, Comparable<Rational>
         denominator = BigInteger.ONE;
     }
 
+    /**
+     * Constructs a Rational integer representing the given integer.
+     * @param n the Integ to represent
+     */
+    public /*constructor*/ Rational(Integ n) {
+        numerator = n.getValue();
+        denominator = BigInteger.ONE;
+    }
+
     @Override
     public Real toReal() {
         return new Real(this);
@@ -90,6 +99,11 @@ public class Rational extends Number implements Expression, Comparable<Rational>
         return new Rational(numerator.negate(), denominator);
     }
 
+    @Override
+    protected Number add(Integ i) {
+        return i.add(this);
+    }
+
 
     @Override
     protected Number add(Rational rat) {
@@ -107,6 +121,11 @@ public class Rational extends Number implements Expression, Comparable<Rational>
         return c.add(this);
     }
 
+    @Override
+    protected Number multiply(Integ i) {
+        return i.multiply(this);
+    }
+
 
     @Override
     protected Number multiply(Rational rat) {
@@ -122,6 +141,11 @@ public class Rational extends Number implements Expression, Comparable<Rational>
     @Override
     protected Number multiply(Complex c) {
         return c.multiply(this);
+    }
+
+    @Override
+    protected Number divide(Integ i) {
+        return this.divide(new Rational(i));
     }
 
     @Override

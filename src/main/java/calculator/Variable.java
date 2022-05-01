@@ -1,7 +1,6 @@
 package calculator;
 
 import visitor.Evaluator;
-import visitor.VariableAssignerVisitor;
 import visitor.Visitor;
 
 public class Variable implements Expression {

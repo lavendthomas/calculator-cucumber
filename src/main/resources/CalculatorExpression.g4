@@ -2,7 +2,7 @@ grammar CalculatorExpression;
 
 INT      : [0-9]+;
 DECIMAL  : [0-9]+'.'[0-9]+;
-IMAGINARY: [0-9]+'i';
+IMAGINARY: [0-9]*'i';
 BOOLEAN  : 'TRUE' | 'FALSE';
 
 PLUS : '+';

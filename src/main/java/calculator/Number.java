@@ -39,9 +39,12 @@ public abstract class Number implements Expression
             return add(r);
         }else if(val instanceof Complex c){
             return add(c);
+        }else if(val instanceof Integ i){
+            return add(i);
         }
         return null;
     }
+    protected abstract Number add(Integ i);
     protected abstract Number add(Rational rat);
     protected abstract Number add(Real r);
     protected abstract Number add(Complex c);
@@ -57,9 +60,12 @@ public abstract class Number implements Expression
             return multiply(r);
         }else if(val instanceof Complex c){
             return multiply(c);
+        }else if(val instanceof Integ i){
+            return multiply(i);
         }
         return null;
     }
+    protected abstract Number multiply(Integ i);
     protected abstract Number multiply(Rational rat);
     protected abstract Number multiply(Real r);
     protected abstract Number multiply(Complex c);
@@ -71,9 +77,12 @@ public abstract class Number implements Expression
             return divide(r);
         }else if(val instanceof Complex c){
             return divide(c);
+        }else if(val instanceof Integ i){
+            return divide(i);
         }
         return null;
     }
+    protected abstract Number divide(Integ i);
     protected abstract Number divide(Rational rat);
     protected abstract Number divide(Real r);
     protected abstract Number divide(Complex c);

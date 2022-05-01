@@ -11,10 +11,10 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.layout.HBox?>
 <VBox id="mainScreen" fx:id="mainScreen" stylesheets="@../styles/scientific.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ScientificController">
    <MenuBar id="bar" fx:id="bar">
       <Menu mnemonicParsing="false">
@@ -92,7 +92,7 @@
       <VBox.margin>
          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
       </VBox.margin>
-      <TextField id="calcField" fx:id="inputField" editable="false" prefHeight="50.0">
+      <TextField id="calcField" fx:id="inputField" prefHeight="50.0">
          <VBox.margin>
             <Insets />
          </VBox.margin>
@@ -219,6 +219,9 @@
          </rowConstraints>
          <Button onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text="0" GridPane.columnIndex="4" />
          <Button onAction="#clickValueButton" prefHeight="65.0" prefWidth="65.0" text="." GridPane.columnIndex="3" />
+         <Button onAction="#clickFctButton" prefHeight="65.0" prefWidth="65.0" text="tanh" />
+         <Button onAction="#clickFctButton" prefHeight="65.0" prefWidth="65.0" text="atanh" GridPane.columnIndex="1" />
+         <Button onAction="#clickFctButton" prefHeight="65.0" prefWidth="65.0" text="ln" GridPane.columnIndex="2" />
          <Button onAction="#submitButton" prefHeight="65.0" prefWidth="130.0" GridPane.columnIndex="5">
             <graphic>
                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
@@ -226,9 +229,19 @@
                </ImageView>
             </graphic>
          </Button>
-         <Button onAction="#clickFctButton" prefHeight="65.0" prefWidth="65.0" text="tanh" />
-         <Button onAction="#clickFctButton" prefHeight="65.0" prefWidth="65.0" text="atanh" GridPane.columnIndex="1" />
-         <Button onAction="#clickFctButton" prefHeight="65.0" prefWidth="65.0" text="ln" GridPane.columnIndex="2" />
+      </GridPane>
+      <GridPane>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="130.0" prefWidth="130.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="130.0" prefWidth="130.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="65.0" minWidth="65.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="130.0" prefWidth="130.0"/>
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="65.0" minHeight="65.0" vgrow="SOMETIMES"/>
+         </rowConstraints>
+         <Button onAction="#pgcd" prefHeight="65.0" prefWidth="130.0" text="pgcd"/>
+         <Button onAction="#mod" prefHeight="65.0" prefWidth="130.0" text="mod" GridPane.columnIndex="1"/>
       </GridPane>
    </VBox>
 </VBox>

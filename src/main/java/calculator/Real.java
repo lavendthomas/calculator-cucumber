@@ -53,6 +53,14 @@ public class Real extends Number implements Expression{
         this.value = new BigDecimal(value);
     }
 
+    /**
+     * Constructor
+     * @param value the value of the real number
+     */
+    public /*constructor*/ Real(Integ value) {
+        this.value = new BigDecimal(value.getValue());
+    }
+
     public BigDecimal getValue() {
         return value;
     }
@@ -67,16 +75,9 @@ public class Real extends Number implements Expression{
         return new Real(value.negate());
     }
 
-
-
     @Override
-    public Number add(Number val) {
-        if(val instanceof Rational rat){
-            return add(rat);
-        }else if(val instanceof Real r){
-            return add(r);
-        }
-        return null;
+    protected Number add(Integ i) {
+        return i.add(this);
     }
 
     @Override
@@ -98,15 +99,9 @@ public class Real extends Number implements Expression{
         return c.add(this);
     }
 
-
     @Override
-    public Number multiply(Number val) {
-        if(val instanceof Rational rat){
-            return multiply(rat);
-        }else if(val instanceof Real r){
-            return multiply(r);
-        }
-        return null;
+    protected Number multiply(Integ i) {
+        return i.multiply(this);
     }
 
     @Override
@@ -130,13 +125,8 @@ public class Real extends Number implements Expression{
     }
 
     @Override
-    public Number divide(Number val) {
-        if(val instanceof Rational rat){
-            return divide(rat);
-        }else if(val instanceof Real r){
-            return divide(r);
-        }
-        return null;
+    protected Number divide(Integ i) {
+        return this.divide(new Real(i));
     }
 
     @Override

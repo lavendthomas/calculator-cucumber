@@ -25,11 +25,9 @@ public class Main {
   	Calculator c = new Calculator();
 
 	  var l = new Parser(c).parse("toto:=sin(x)+1");
-	  //System.out.println(c.eval(l));
+//	  System.out.println(c.eval(l));
 	  var lr = new Parser(c).parse("toto(1)");
-	  //System.out.println(c.eval(lr));
-	  var b = new Parser(c).parse("TRUE (OR) FALSE");
-	  System.out.println(c.evalBool(b));
+	  System.out.println(c.eval(lr));
 
 
 	  /*

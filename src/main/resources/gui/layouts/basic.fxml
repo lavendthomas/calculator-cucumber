@@ -31,17 +31,6 @@
                 </MenuButton>
             </graphic>
         </Menu>
-        <Menu mnemonicParsing="false">
-            <graphic>
-                <MenuButton mnemonicParsing="false" prefWidth="125.0" text="Notation type">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="Prefix" />
-                        <MenuItem mnemonicParsing="false" text="Infix" />
-                        <MenuItem mnemonicParsing="false" text="Postfix" />
-                    </items>
-                </MenuButton>
-            </graphic>
-        </Menu>
     </MenuBar>
     <HBox fx:id="BasicMode">
         <Button maxHeight="38.0" maxWidth="45.0" minHeight="38.0" minWidth="45.0" mnemonicParsing="false" onAction="#saveHistory">
